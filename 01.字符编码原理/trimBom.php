@@ -51,3 +51,11 @@ function rewrite($filename, $data)
     fwrite($filenum, $data);
     fclose($filenum);
 }
+
+/*  
+BOM头是UTF-8来告诉编辑器：我是UTF8编码。它的编码是\xEF\xBB\xBF
+但是PHP在设计之初并没有考虑到BOM头的问题，所以在编解码的时候很容易出现问题
+比如今天遇到的问题，json_decode，当解码的string有BOM头的时候json_decode就解析失败，返回NULL
+*/
+$result = trim($result, "\xEF\xBB\xBF");
+print_r(json_decode($result, true));
