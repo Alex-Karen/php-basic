@@ -1,13 +1,13 @@
 <?php
 // phpinfo();
-// echo "this is a pen , \nthis is a pen." . "\r\n";
-// echo 'this is a pen, \nthis is a pen.' . "\r\n";
+echo "this is a pen , \nthis is a pen." . "\r\n";
+echo 'this is a pen, \nthis is a pen.' . "\r\n";
 
-// echo "\101\102" . "\r\n";
-// echo "\x41\x42" . "\r\n";
+echo "\101\102" . "\r\n";
+echo "\x41\x42" . "\r\n";
 
-// echo  "\\" . "\r\n";
-// echo  '\\' . "\r\n";
+echo  "\\" . "\r\n";
+echo  '\\' . "\r\n";
 // htmlspecialchars(); //把预定义的字符转换为HTML实体
 
 /*
@@ -19,5 +19,10 @@
     字节组成的数组可以用[]或者{}访问某个字符,字符串长度可以达到2G(内存)
     常见函数都是单字节处理方式,可以用[]或者{}访问某个字符
     PHP字符串是二进制安全的
-
 */
+
+//通过var_export导入数组到文件 即文件缓存
+$arr = [1, 2, 3, 4 ,5];
+$str = var_export($arr, true);
+$str = '<?php return ' . $str . ';';
+file_put_contents('demo', $str);
