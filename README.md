@@ -492,6 +492,7 @@ PHP数组函数分类
     $HTTP_RAW_POST_DATA VS php://input
     php://input可以读取没有处理过的POST数据。相较于$HTTP_RAW_POST_DATA而言，它给内存带来的压力较小。
     This feature has been DEPRECATED as of PHP 5.6.0. 
+
 ### PHP文件核心编程
 
 ### Linux原理和应用
