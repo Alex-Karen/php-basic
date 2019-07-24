@@ -206,3 +206,308 @@ GBK和UTF8该如何选择？
     将最有可能匹配的多选分支放到前头（先迈最好使的腿）
 
 ### PHP编码技巧
+
+编写代码的“四项基本原则”
+
+    正确的实现功能
+    执行的速度要快
+    占用系统资源少
+    后期维护方便
+
+最重要的命名注意事项
+
+    命名要有实际含义
+    命名风格保持一致
+    不用拼音命名
+    不用语言关键字
+
+适当的使用注释
+
+    好的代码应该是自描述的
+    难以理解的地方加上注释
+    函数的功能加上注释说明
+    类的功能和使用方法加注释
+
+使用一个变量，需要初始化
+
+优先使用单引号
+
+    `$row[‘id’]的效率是$row[id]的7倍`
+
+用“1==$a” 替换 “$a==1”
+
+防御式编程思想
+
+    保护程序免遭非法输入数据的危害
+    错误处理技术
+    异常处理
+    隔离程序，使之相互影响小
+    因地制宜的防御，过度防御会增加复杂度
+
+用自己可控的环境参数
+
+    明确包含文件的路径
+    给予恰当的默认值
+    自定义错误报警的级别
+    不依赖系统环境参数，程序要动态了解所处的环境
+
+    不要相信外部的一切输入
+
+纯 PHP 代码，最好在文件末尾删除 PHP 结束标记
+
+坚持字符编码统一
+
+    header("Content-type: text/html;charset=utf-8");
+
+error_reporting(7)
+
+优先使用PHP内置函数
+
+    usort — 使用用户自定义的比较函数对数组中的值进行排序 
+    rawurlencode — 按照 RFC 1738 对 URL 进行编码
+    parse_url — 解析 URL，返回其组成部分
+    http_build_query — 生成 URL-encode 之后的请求字符串
+    exif_imagetype — 判断一个图像的类型
+    levenshtein — 计算两个字符串之间的编辑距离
+    uniqid — 生成一个唯一ID
+    get_browser — 获取浏览器具有的功能
+    get_defined_vars — 返回由所有已定义变量所组成的数组
+    str_word_count — 返回字符串中单词的使用情况
+
+屏蔽错误非常低效
+
+    养成不用@的习惯
+
+时刻备份源代码
+
+记住有效期原则
+
+    不要随便相信网上的那些PHP优化50则之类的东西，记住一切都有有效期，要善于自己去验证
+
+#### PHP语法糖
+
+echo的逗号和点号
+
+    逗号优先于点号
+
+用i+=1代替i=i+1
+
+用isset代替strlen
+
+    strlen()函数函数执行起来相当快，只返回在zval 结构中存储的已知字符串长度。但是由于strlen()是函数，多多少少会有些慢。
+
+用strtr代替str_replace
+
+    由于底层实现原理的不一样，strtr函数的效率是str_replace函数的四倍。
+
+PHP用yield实现协程
+
+    好多内部函数，特别是迭代有关的函数应该都有可能进行优化
+
+用 “[]” 定义数组
+
+用 ** 进行幂运算
+
+用 ... 定义变长参数函数
+
+函数赋值默认参数：+ 运算符
+
+?? 运算符
+
+<=> 比较运算符
+
+if的使用技巧之“给定初始值”
+
+if的使用技巧之“用"&&" 替换 if”
+
+if的使用技巧之“三元运算符替换”
+
+简化“三元运算符”
+
+if的使用技巧之“去掉多此一举的if”
+
+循环语句几个要点
+
+    用while(true) 表示无限循环，别用for
+    特定情况下[发邮件、采集网页]，要加延时sleep
+    循环体内尽可能不用函数或更耗资源的调用
+    foreach代替while和for循环（PHP）
+    避免空循环
+    只做一件事,尽可能短，控制在50行以内
+    循环嵌套限制在3层以内
+
+使用更精悍短小的代码
+
+    函数的最佳最大长度是50-150行代码
+    函数参数不超过7个
+    短小函数更容易理解也方便修改
+    只做一件事情的函数更易于复用
+    短小的函数测试更方便
+
+复杂的逻辑表达式做成布尔函数
+
+永远不要复制粘贴雷同的代码
+
+PHP重点新特性
+
+    文件上传进度 session.upload_progress
+    short_open_tag 无论是否开启，都可用
+    动态访问静态变量
+    异常可以嵌套
+    const 关键字可用来在类定义之外定义常量了
+    Heredoc 结构中可以用双引号来声明标识符了
+    添加 Nowdoc 语法支持
+    增加 goto 操作符
+    后期静态绑定
+    default_charset从ISO-8859-1已经变为UTF-8
+    新增了动态访问静态方法的方式
+    内置用于开发的 CLI 模式的 web server
+    实例化时访问类成员 (new Foo)->bar();
+    对函数返回数组的成员访问解析 print func()[0];
+    新增二进制直接量 $bin = 0b110011;
+    boolval() 函数
+    新增 array_column() 函数
+    直接通过下标获取访问数组和字符串字面量的元素或字符
+    empty() 支持传入一个任意表达式，而不仅是一个变量
+    foreach 支持 list()
+    新增 finally 关键字
+    新增 Traits
+    函数返回值类型声明,标量类型声明
+
+PHP基本编码规范
+
+    PHP代码文件必须以 <?php 或 <?= 标签开始；
+    PHP代码文件必须以 不带BOM的 UTF-8 编码；
+    PHP代码中应该只定义类、函数、常量等声明，或其他会产生 从属效应 的操作，二者只能选其一；
+    命名空间以及类必须符合 PSR 的自动加载规范：PSR-4；
+    类的命名必须遵循 StudlyCaps 大写开头的驼峰命名规范；
+    类中的常量所有字母都必须大写，单词间用下划线分隔；
+    方法名称必须符合 camelCase 式的小写开头驼峰命名规范。
+
+### PHP数组原理和高级应用
+
+什么是HashTable
+
+    哈希表，是根据关键字（Key value）而直接访问在内存存储位置的数据结构。也就是说，它通过把键值通过一个函数的计算，映射到表中一个位置来访问记录，这加快了查找速度。这个映射函数称做哈希函数，存放记录的数组称做哈希表。
+
+    hash table，又叫哈希表，散列表，Hash表。
+    这种数据结构通过key->value的映射关系，使得普通的查找和插入、删除操作都可以在O(1) 的时间内完成。
+    key->value的映射是通过Hash函数来实现的。
+
+PHP数组Hashtable结构体
+
+```c
+typedef struct _hashtable {
+    uint nTableSize;        // hash Bucket的大小，最小为8，以2x增长。
+    uint nTableMask;        // nTableSize-1 ， 索引取值的优化，193491849 & 127
+    uint nNumOfElements;    // hash Bucket中当前存在的元素个数，count()函数会直接返回此值。
+    ulong nNextFreeElement; // 下一个数字索引的位置
+    Bucket *pInternalPointer;   // 当前遍历的指针foreach比for快的原因之一,reset, current遍历函数使用
+    Bucket *pListHead;          // 存储数组头元素指针
+    Bucket *pListTail;          // 存储数组尾元素指针
+    Bucket **arBuckets;         // 存储hash数组,实际的存储容器
+    unsigned char nApplyCount; // 标记当前hash Bucket被递归访问的次数（防止多次递归）
+} HashTable;
+```
+
+Bucket结构体
+
+```c
+typedef struct bucket {
+    ulong h;            // 对char *key进行hash后的值，或者是用户指定的数字索引值
+    uint nKeyLength;    // hash关键字的长度，如果数组索引为数字，此值为0
+    void *pData;        // 指向value，一般是用户数据的副本，如果是指针数据，则指向pDataPtr
+    void *pDataPtr;     //如果是指针数据，此值会指向真正的value，同时上面pData会指向此值
+    struct bucket *pListNext;   // 整个hash表的下一元素
+    struct bucket *pListLast;   // 整个hash表该元素的上一个元素
+    struct bucket *pNext;       // 存放在同一个hash Bucket内的下一个元素
+    struct bucket *pLast;       // 同一个hash bucket的上一个元素
+    const char *arKey;          // 保存当前key所对应的字符串值
+} Bucket;
+```
+
+数组转换为字符串（序列化、持久化）
+
+    为什么要序列化？
+    Api接口通信
+    数据缓存
+    数组数据持久化（例：保存到数据库中）
+    序列化的方法？
+    方法一：函数 serialize() 可以实现
+    方法二：函数 json_encode ()可以实现
+    方法三：函数 var_export($items, true);
+    方法四：xml、其他自定义文件格式…
+    方法五：mcpack、protobuffer等二进制序列化方式
+
++运算符 对比 array_merge
+
+    array_merge
+    一个数组中的值附加在前一个数组的后面
+    字符串键名，则该键名后面的值将覆盖前一个值
+    数字键名，后面的值将不会覆盖原来的值，而是附加到后面。
+    数字键名将会被重新编号。
+    也可以是一个参数，并且该数组是数字索引的，则键名会以连续方式重新索引
+    +运算符
+    把右边的数组元素附加到左边的数组后面，两个数组中都有的键名（索引和数字），则只用左边数组中的，右边的被忽略。
+
+    array_merge ：覆盖，相同数字键追加。
+    +运算符：补充，相同数字键忽略。
+
+PHP数组元素的过滤和移除
+
+    方法1：直接用unset移除元素
+    方法2：array_slice从数组中取出一段
+    方法3：array_splice把数组中的一部分去掉并用其它值取代
+    方法4：用array_filter过滤元素
+    方法5：用array_shift()将开头的元素移出数组
+    方法6：用array_pop ()将最后一个元素弹出
+
+PHP数组排序的原理
+
+    由于数组排序并不会改变数组中的元素，而只是改变了数组中元素的位置，因而，对底层而言，实际上只是对全局的双链表进行排序。
+    申请n个额外的空间（n是数组元素个数）
+    然后遍历双链表，将双链表的每个节点存储到临时空间
+    调用排序函数zend_qsort（内部是快速排序算法）对数组进行排序
+    排序之后，双链表中节点的位置发生了变化，因而需要调整指针的指向。
+    遍历数组，分别设置每一个节点的pListLast和pListNext
+    最后设置HashTable的pListTail
+
+PHP数组函数分类
+
+    数组遍历相关函数：如prev, next, current, end,reset, each等
+    数组排序相关：如sort, rsort, asort, arsort, ksort, krsort, uasort, uksort
+    数组查找相关: 如in_array, array_search, array_key_exists等
+    数组分割、合并相关： array_slice, array_splice, implode, array_chunk, array_combine等
+    数组交并差：如array_merge, array_diff, array_diff_*, array_intersect, array_intersect_*
+    作为stack/queue容器的数组： 如array_push, array_pop, array_shift
+    其他的数组操作：array_fill, array_flip, array_sum, array_reverse等
+
+输入流 php://input
+
+    $_POST VS php://input
+    仅在取值为application/x-www-data-urlencoded和multipart/form-data时，php会将http请求body相应数据会填入到数组$_POST，填入到$_POST数组中的数据是进行urldecode()解析的结果。
+    只要Content-Type不为multipart/form-data， php://input会填入post数据。
+    仅当Content-Type为application/x-www-form-urlencoded且提交方法是POST方法时，$_POST数据与php://input数据才是一致的。
+
+    $HTTP_RAW_POST_DATA VS php://input
+    php://input可以读取没有处理过的POST数据。相较于$HTTP_RAW_POST_DATA而言，它给内存带来的压力较小。
+    This feature has been DEPRECATED as of PHP 5.6.0. 
+### PHP文件核心编程
+
+### Linux原理和应用
+
+### PHP选项和运行原理
+
+### 深入http协议
+
+### javascript精髓
+
+### PHP安全攻防
+
+### PHP数据结构
+
+### NoSQL技术
+
+### MYSQL高级应用
+
+### PHP高级特性
